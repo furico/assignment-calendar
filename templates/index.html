@@ -5,9 +5,62 @@
   <title>Title</title>
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
- <h1>Hello, World!</h1>
+  <div class="container">
+    <h1>Assignment Calendar</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>月</th>
+          <th>火</th>
+          <th>水</th>
+          <th>木</th>
+          <th>金</th>
+          <th>土</th>
+          <th>日</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><p class="calendar-date">1</p></td>
+          <td><p class="calendar-date">2</p></td>
+          <td><p class="calendar-date">3</p></td>
+          <td><p class="calendar-date">4</p></td>
+          <td><p class="calendar-date">5</p></td>
+          <td><p class="calendar-date">6</p></td>
+          <td><p class="calendar-date">7</p></td>
+        </tr>
+        <tr>
+          <td><p class="calendar-date">8</p></td>
+          <td><p class="calendar-date">9</p></td>
+          <td><p class="calendar-date">10</p></td>
+          <td><p class="calendar-date">11</p></td>
+          <td><p class="calendar-date">12</p></td>
+          <td><p class="calendar-date">13</p></td>
+          <td><p class="calendar-date">14</p></td>
+        </tr>
+        <tr>
+          <td><p class="calendar-date">15</p></td>
+          <td><p class="calendar-date">16</p></td>
+          <td><p class="calendar-date">17</p></td>
+          <td><p class="calendar-date">18</p></td>
+          <td><p class="calendar-date">19</p></td>
+          <td><p class="calendar-date">20</p></td>
+          <td><p class="calendar-date">21</p></td>
+        </tr>
+        <tr>
+          <td><p class="calendar-date">22</p></td>
+          <td><p class="calendar-date">23</p></td>
+          <td><p class="calendar-date">24</p></td>
+          <td><p class="calendar-date">25</p></td>
+          <td><p class="calendar-date">26</p></td>
+          <td><p class="calendar-date">27</p></td>
+          <td><p class="calendar-date">28</p></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
