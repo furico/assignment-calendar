@@ -3,6 +3,20 @@ body {
   font-size: 14px;
 }
 
+.jumbotron {
+  margin-bottom: 1em;
+  padding: 3.5em 0.4em;
+  background: #3d4f5d;
+  color: #fff;
+}
+
+h1 {
+  font-size: 36px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
 .container {
   width: 1140px;
   margin-right: auto;
