@@ -21,7 +21,7 @@
             <td class="nav-today"><button class="pure-button today">今月</button></td>
             <td class="nav-prev"><button class="pure-button angle-left"><i class="fa fa-angle-left fa-lg"></i></button></td>
             <td class="nav-next"><button class="pure-button angle-right"><i class="fa fa-angle-right fa-lg"></i></button></td>
-            <td><span class="current-month">2015年 4月</span></td>
+            <td><span class="current-month" data-bind="text: currentMonth"></span></td>
           </tr>
         </tbody>
       </table>
@@ -40,46 +40,14 @@
           <th>日</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td><p class="calendar-date">1</p></td>
-          <td><p class="calendar-date">2</p></td>
-          <td><p class="calendar-date">3</p></td>
-          <td><p class="calendar-date">4</p></td>
-          <td><p class="calendar-date">5</p></td>
-          <td><p class="calendar-date">6</p></td>
-          <td><p class="calendar-date">7</p></td>
-        </tr>
-        <tr>
-          <td><p class="calendar-date">8</p></td>
-          <td><p class="calendar-date">9</p></td>
-          <td><p class="calendar-date">10</p></td>
-          <td><p class="calendar-date">11</p></td>
-          <td><p class="calendar-date">12</p></td>
-          <td><p class="calendar-date">13</p></td>
-          <td><p class="calendar-date">14</p></td>
-        </tr>
-        <tr>
-          <td><p class="calendar-date">15</p></td>
-          <td><p class="calendar-date">16</p></td>
-          <td><p class="calendar-date">17</p></td>
-          <td><p class="calendar-date">18</p></td>
-          <td><p class="calendar-date">19</p></td>
-          <td><p class="calendar-date">20</p></td>
-          <td><p class="calendar-date">21</p></td>
-        </tr>
-        <tr>
-          <td><p class="calendar-date">22</p></td>
-          <td><p class="calendar-date">23</p></td>
-          <td><p class="calendar-date">24</p></td>
-          <td><p class="calendar-date">25</p></td>
-          <td><p class="calendar-date">26</p></td>
-          <td><p class="calendar-date">27</p></td>
-          <td><p class="calendar-date">28</p></td>
+      <tbody data-bind="foreach: weeks">
+        <tr data-bind="foreach: $data">
+          <td><p class="calendar-date" data-bind="text: $data"></p></td>
         </tr>
       </tbody>
     </table>
   </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
