@@ -10,6 +10,10 @@ body {
   color: #fff;
 }
 
+#main-nav {
+  margin-bottom: 1em;
+}
+
 h1 {
   font-size: 36px;
   margin-top: 10px;
@@ -25,13 +29,47 @@ h1 {
   padding-left: 10px;
 }
 
-table {
+button.today {
+  height: 30px;
+  border: 1px solid #bbb;
+}
+
+button.angle-left {
+  height: 30px;
+  border: 1px solid #bbb;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+button.angle-right {
+  height: 30px;
+  border: 1px solid #bbb;
+  margin-left: -1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.nav-prev {
+  width: 50px;
+  text-align: right;
+}
+
+.nav-next {
+  width: 50px;
+  text-align: left;
+}
+
+.current-month {
+  padding: 0 1em;
+  font-size: 16px;
+}
+
+.calendar-table {
   width: 100%;
   margin-bottom: 20px;
   border-color: gray;
 }
 
-th {
+.calendar-table th {
   font-weight: normal;
   text-align: left;
   color: #aaa;
@@ -39,7 +77,7 @@ th {
   padding: 8px;
 }
 
-td {
+.calendar-table td {
   border: 1px solid #ddd;
   vertical-align: top;
   height: 60px;
