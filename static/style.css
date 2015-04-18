@@ -4,8 +4,8 @@ body {
 }
 
 .jumbotron {
-  margin-bottom: 1em;
-  padding: 3.5em 0.4em;
+  margin-bottom: 1.5em;
+  padding: 1em 0.4em;
   background: #3d4f5d;
   color: #fff;
 }
@@ -30,17 +30,25 @@ h1 {
 }
 
 button.today {
+  font-weight: bold;
+  padding-top: 0;
+  padding-bottom: 0;
   height: 30px;
   border: 1px solid #bbb;
 }
 
 button.angle-left {
+  padding-top: 0;
+  padding-bottom: 0;
   height: 30px;
   border: 1px solid #bbb;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+
 button.angle-right {
+  padding-top: 0;
+  padding-bottom: 0;
   height: 30px;
   border: 1px solid #bbb;
   margin-left: -1px;
