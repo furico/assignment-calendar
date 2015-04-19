@@ -62,6 +62,4 @@ function ViewModel() {
   getMonthWeeks();
 }
 
-var vm = new ViewModel();
-ko.applyBindings(vm);
-// getMonthWeeks(vm);
+ko.applyBindings(new ViewModel());
