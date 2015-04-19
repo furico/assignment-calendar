@@ -15,12 +15,8 @@ def month():
     t = date.today()
     year = request.args.get('year', t.year, type=int)
     month = request.args.get('month', t.month, type=int)
-    cal = Calendar()
-    weeks = cal.monthdatescalendar(year, month)
-    result = list()
-    for week in weeks:
-        result.append([d.day for d in week])
-
+    weeks = Calendar().monthdatescalendar(year, month)
+    result = [[d.day for d in week] for week in weeks]
     return jsonify(result=result)
 
 if __name__ == '__main__':
