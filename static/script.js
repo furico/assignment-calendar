@@ -54,7 +54,7 @@ function ViewModel() {
     return self.currentYear() + "年 " + self.currentMonth() + "月";
   });
 
-  self.weeks = ko.observableArray(getMonthWeeks(self.currentYear(), self.currentMonth()));
+  self.weeks = ko.observableArray();
   
   self.updateCalendar = function() {
     self.weeks.removeAll();
@@ -88,4 +88,12 @@ function ViewModel() {
   };
 }
 
-ko.applyBindings(new ViewModel());
+var vm = new ViewModel();
+
+ko.applyBindings(vm);
+
+$.getJSON("/month", function(data) {
+  data.result.forEach(function(elem, index) {
+    vm.weeks.push(elem);
+  });
+});
