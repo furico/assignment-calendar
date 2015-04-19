@@ -57,6 +57,11 @@ function ViewModel() {
   self.weeks = ko.observableArray(getMonthWeeks(self.currentYear(), self.currentMonth()));
   self.moveMonth = function(step) {
     self.currentMonth(self.currentMonth() + step);
+    self.weeks.removeAll();
+    var currentMonthWeeks = getMonthWeeks(self.currentYear(), self.currentMonth());
+    currentMonthWeeks.forEach(function(elem, index) {
+      self.weeks.push(elem);
+    });
   };
 }
 
