@@ -1,11 +1,12 @@
 function ViewModel() {
   var self = this;
   var today = new Date();
-  var getMonthWeeks = function() {
+  var updateCalendar = function() {
     $.getJSON("/month", {
       year: self.currentYear(),
       month: self.currentMonth(),
     }, function(data) {
+      self.weeks.removeAll();
       data.result.forEach(function(elem, index) {
         self.weeks.push(elem);
       });
@@ -31,16 +32,11 @@ function ViewModel() {
 
   self.weeks = ko.observableArray();
   
-  self.updateCalendar = function() {
-    self.weeks.removeAll();
-    getMonthWeeks(self);
-  };
-
   self.resetMonth = function() {
     var today = new Date();
     self.currentYear(today.getFullYear());
     self.currentMonth(today.getMonth() + 1);
-    self.updateCalendar();
+    updateCalendar();
   };
 
   self.moveMonth = function(step) {
@@ -56,10 +52,10 @@ function ViewModel() {
     else {
       self.currentMonth(tmpMonth);
     }
-    self.updateCalendar();
+    updateCalendar();
   };
 
-  getMonthWeeks();
+  updateCalendar();
 }
 
 ko.applyBindings(new ViewModel());
