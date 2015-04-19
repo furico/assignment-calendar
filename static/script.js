@@ -1,17 +1,17 @@
-var getMonthWeeks = function(vm) {
-  $.getJSON("/month", {
-    year: vm.currentYear(),
-    month: vm.currentMonth(),
-  }, function(data) {
-    data.result.forEach(function(elem, index) {
-      vm.weeks.push(elem);
-    });
-  });
-}
-
 function ViewModel() {
   var self = this;
   var today = new Date();
+  var getMonthWeeks = function() {
+    $.getJSON("/month", {
+      year: self.currentYear(),
+      month: self.currentMonth(),
+    }, function(data) {
+      data.result.forEach(function(elem, index) {
+        self.weeks.push(elem);
+      });
+    });
+  }
+
   self.currentYear = ko.observable(today.getFullYear());
   self.currentMonth = ko.observable(today.getMonth() + 1);
 
@@ -58,8 +58,10 @@ function ViewModel() {
     }
     self.updateCalendar();
   };
+
+  getMonthWeeks();
 }
 
 var vm = new ViewModel();
 ko.applyBindings(vm);
-getMonthWeeks(vm);
+// getMonthWeeks(vm);
