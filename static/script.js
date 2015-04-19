@@ -92,7 +92,11 @@ var vm = new ViewModel();
 
 ko.applyBindings(vm);
 
-$.getJSON("/month", function(data) {
+var today = new Date();
+$.getJSON("/month", {
+  year: today.getFullYear(),
+  month: today.getMonth() + 1
+}, function(data) {
   data.result.forEach(function(elem, index) {
     vm.weeks.push(elem);
   });
