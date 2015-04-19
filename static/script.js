@@ -55,13 +55,36 @@ function ViewModel() {
   });
 
   self.weeks = ko.observableArray(getMonthWeeks(self.currentYear(), self.currentMonth()));
-  self.moveMonth = function(step) {
-    self.currentMonth(self.currentMonth() + step);
+  
+  self.updateCalendar = function() {
     self.weeks.removeAll();
     var currentMonthWeeks = getMonthWeeks(self.currentYear(), self.currentMonth());
     currentMonthWeeks.forEach(function(elem, index) {
       self.weeks.push(elem);
     });
+  };
+
+  self.resetMonth = function() {
+    var today = new Date();
+    self.currentYear(today.getFullYear());
+    self.currentMonth(today.getMonth() + 1);
+    self.updateCalendar();
+  };
+
+  self.moveMonth = function(step) {
+    var tmpMonth = self.currentMonth() + step;
+    if (tmpMonth < 1) {
+      self.currentYear(self.currentYear() - 1);
+      self.currentMonth(12);
+    }
+    else if (tmpMonth > 12) {
+      self.currentYear(self.currentYear() + 1);
+      self.currentMonth(1);
+    }
+    else {
+      self.currentMonth(tmpMonth);
+    }
+    self.updateCalendar();
   };
 }
 
