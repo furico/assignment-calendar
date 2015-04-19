@@ -10,8 +10,8 @@ body {
   color: #fff;
 }
 
-#main-nav {
-  margin-bottom: 1em;
+.main-nav {
+  margin-bottom: 0.5em;
 }
 
 h1 {

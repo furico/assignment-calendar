@@ -18,10 +18,22 @@
       <table class="nav-table">
         <tbody>
           <tr>
-            <td class="nav-today"><button class="pure-button today">今月</button></td>
-            <td class="nav-prev"><button class="pure-button angle-left"><i class="fa fa-angle-left fa-lg"></i></button></td>
-            <td class="nav-next"><button class="pure-button angle-right"><i class="fa fa-angle-right fa-lg"></i></button></td>
-            <td><span class="current-month" data-bind="text: currentMonth"></span></td>
+            <td class="nav-today">
+              <button class="pure-button today">今月</button>
+            </td>
+            <td class="nav-prev">
+              <button class="pure-button angle-left" data-bind="click: function(data, event) { moveMonth(-1) }">
+                <i class="fa fa-angle-left fa-lg"></i>
+              </button>
+            </td>
+            <td class="nav-next">
+              <button class="pure-button angle-right" data-bind="click: function(data, event) { moveMonth(1) }">
+                <i class="fa fa-angle-right fa-lg"></i>
+              </button>
+            </td>
+            <td>
+              <span class="current-month" data-bind="text: formattedMonth"></span>
+            </td>
           </tr>
         </tbody>
       </table>
