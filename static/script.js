@@ -1,37 +1,12 @@
-function getMonthWeeks(year, month) {
-  var weeks3 = [
-    [23, 24, 25, 26, 27, 28, 1],
-    [2, 3, 4, 5, 6, 7, 8],
-    [9, 10, 11, 12, 13, 14, 15],
-    [16, 17, 18, 19, 20, 21, 22],
-    [23, 24, 25, 26, 27, 28, 29],
-    [30, 21, 1, 2, 3, 4, 5],
-  ];
-
-  var weeks4 = [
-    [30, 31, 1, 2, 3, 4, 5],
-    [6, 7, 8 ,9 ,10, 11, 12],
-    [13, 14, 15, 16, 17, 18, 19],
-    [20, 21, 22, 23, 24, 25, 26],
-    [27, 28, 29, 30, 1, 2, 3],
-  ];
-
-  var weeks5 = [
-    [27, 28, 29, 30, 1, 2, 3],
-    [4, 5, 6, 7, 8, 9, 10],
-    [11, 12, 13, 14, 15, 16, 17],
-    [18, 19, 20, 21, 22, 23, 24],
-    [25, 26, 27, 28, 29, 30, 31],
-  ];
-
-  switch (month) {
-    case 3:
-      return weeks3;
-    case 5:
-      return weeks5;
-    default:
-      return weeks4;
-  }
+var getMonthWeeks = function(vm) {
+  $.getJSON("/month", {
+    year: vm.currentYear(),
+    month: vm.currentMonth(),
+  }, function(data) {
+    data.result.forEach(function(elem, index) {
+      vm.weeks.push(elem);
+    });
+  });
 }
 
 function ViewModel() {
@@ -58,10 +33,7 @@ function ViewModel() {
   
   self.updateCalendar = function() {
     self.weeks.removeAll();
-    var currentMonthWeeks = getMonthWeeks(self.currentYear(), self.currentMonth());
-    currentMonthWeeks.forEach(function(elem, index) {
-      self.weeks.push(elem);
-    });
+    getMonthWeeks(self);
   };
 
   self.resetMonth = function() {
@@ -89,15 +61,5 @@ function ViewModel() {
 }
 
 var vm = new ViewModel();
-
 ko.applyBindings(vm);
-
-var today = new Date();
-$.getJSON("/month", {
-  year: today.getFullYear(),
-  month: today.getMonth() + 1
-}, function(data) {
-  data.result.forEach(function(elem, index) {
-    vm.weeks.push(elem);
-  });
-});
+getMonthWeeks(vm);
