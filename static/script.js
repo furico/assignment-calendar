@@ -55,20 +55,25 @@ function ViewModel() {
     updateCalendar();
   };
 
+  self.assignMember = function() {
+    alert('assign!');
+  };
+
   updateCalendar();
 }
 
 ko.components.register('assignee', {
   viewModel: function(params) {
     this.name = params.value;
-    this.remove = function() {
+    this.remove = function(data, event) {
       alert('remove!');
+      event.preventDefault();
     };
   },
   template:
     '<div class="calendar-assignee">\
        <span data-bind="text: name"></span>\
-       <button class="close-btn" data-bind="click: remove"><i class="fa fa-times-circle"></i></button>\
+       <button class="close-btn" data-bind="click: remove, clickBubble: false"><i class="fa fa-times-circle"></i></button>\
     </div>'
 });
 

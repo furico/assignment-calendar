@@ -54,7 +54,7 @@
       </thead>
       <tbody data-bind="foreach: weeks">
         <tr data-bind="foreach: $data">
-          <td>
+          <td data-bind="click: $root.assignMember">
             <p class="calendar-date" data-bind="text: $data"></p>
             <assignee params="value: 'shimamura'"></assignee>
           </td>
