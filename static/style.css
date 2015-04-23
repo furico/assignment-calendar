@@ -88,7 +88,7 @@ button.angle-right {
 .calendar-table td {
   border: 1px solid #ddd;
   vertical-align: top;
-  height: 60px;
+  height: 100px;
 }
 
 .calendar-date {
@@ -97,4 +97,14 @@ button.angle-right {
   background-color: #eee;
   color: #999;
   margin: 0 0 10px;
+}
+
+.calendar-assignee {
+  padding: 2px 10px;
+  background-color: rgb(66, 184, 211);
+  margin: 0 2px 10px;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }

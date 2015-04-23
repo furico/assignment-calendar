@@ -54,7 +54,10 @@
       </thead>
       <tbody data-bind="foreach: weeks">
         <tr data-bind="foreach: $data">
-          <td><p class="calendar-date" data-bind="text: $data"></p></td>
+          <td>
+            <p class="calendar-date" data-bind="text: $data"></p>
+            <p class="calendar-assignee">shimamura</p>
+          </td>
         </tr>
       </tbody>
     </table>
