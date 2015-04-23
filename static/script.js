@@ -61,11 +61,14 @@ function ViewModel() {
 ko.components.register('assignee', {
   viewModel: function(params) {
     this.name = params.value;
+    this.remove = function() {
+      alert('remove!');
+    };
   },
   template:
     '<div class="calendar-assignee">\
        <span data-bind="text: name"></span>\
-       <button class="close-btn"><i class="fa fa-times-circle"></i></button>\
+       <button class="close-btn" data-bind="click: remove"><i class="fa fa-times-circle"></i></button>\
     </div>'
 });
 
