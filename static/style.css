@@ -107,4 +107,17 @@ button.angle-right {
   color: #fff;
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close-btn {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0 4px;
+  border: 0;
+  position: absolute;
+  right: 6px;
+}
+.close-btn:hover {
+  color: #ddd;
 }
