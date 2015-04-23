@@ -58,4 +58,16 @@ function ViewModel() {
   updateCalendar();
 }
 
+ko.components.register('assignee', {
+  viewModel: function(params) {
+    this.name = params.value;
+  },
+  template:
+    '<div class="calendar-assignee">\
+       <span data-bind="text: name"></span>\
+       <button class="close-btn"><i class="fa fa-times-circle"></i></button>\
+    </div>'
+});
+
+
 ko.applyBindings(new ViewModel());

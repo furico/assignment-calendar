@@ -56,14 +56,7 @@
         <tr data-bind="foreach: $data">
           <td>
             <p class="calendar-date" data-bind="text: $data"></p>
-            <div class="calendar-assignee">
-              <span>shimamura</span>
-              <button class="close-btn"><i class="fa fa-times-circle"></i></button>
-            </div>
-            <div class="calendar-assignee">
-              <span>shibuya</span>
-              <button class="close-btn"><i class="fa fa-times-circle"></i></button>
-            </div>
+            <assignee params="value: 'shimamura'"></assignee>
           </td>
         </tr>
       </tbody>
