@@ -92,7 +92,6 @@ button.angle-right {
 }
 .calendar-table td:hover {
   background-color: #ffffcc;
-  cursor: pointer;
 }
 
 .calendar-date {
