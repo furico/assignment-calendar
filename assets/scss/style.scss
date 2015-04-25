@@ -29,31 +29,31 @@ h1 {
   padding-left: 10px;
 }
 
-button.today {
-  font-weight: bold;
-  padding-top: 0;
-  padding-bottom: 0;
-  height: 30px;
-  border: 1px solid #bbb;
-}
-
-button.angle-left {
-  padding-top: 0;
-  padding-bottom: 0;
-  height: 30px;
-  border: 1px solid #bbb;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-button.angle-right {
-  padding-top: 0;
-  padding-bottom: 0;
-  height: 30px;
-  border: 1px solid #bbb;
-  margin-left: -1px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+button {
+  .today {
+    font-weight: bold;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 30px;
+    border: 1px solid #bbb;
+  }
+  .angle-left {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 30px;
+    border: 1px solid #bbb;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .angle-right {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 30px;
+    border: 1px solid #bbb;
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 }
 
 .nav-prev {
@@ -75,23 +75,21 @@ button.angle-right {
   width: 100%;
   margin-bottom: 20px;
   border-color: gray;
-}
-
-.calendar-table th {
-  font-weight: normal;
-  text-align: left;
-  color: #aaa;
-  border: 0;
-  padding: 8px;
-}
-
-.calendar-table td {
-  border: 1px solid #ddd;
-  vertical-align: top;
-  height: 100px;
-}
-.calendar-table td:hover {
-  background-color: #ffffcc;
+  th {
+    font-weight: normal;
+    text-align: left;
+    color: #aaa;
+    border: 0;
+    padding: 8px;
+  }
+  td {
+    border: 1px solid #ddd;
+    vertical-align: top;
+    height: 100px;
+    &:hover {
+      background-color: #ffffcc;
+    }
+  }
 }
 
 .calendar-date {
@@ -121,11 +119,11 @@ button.angle-right {
   border: 0;
   position: absolute;
   right: 6px;
-}
-.close-btn:hover {
-  color: #ddd;
-}
-.close-btn:active,
-.close-btn:focus {
-  outline: none;
+  &:hover {
+    color: #ddd;
+  }
+  &:active,
+  &:focus {
+    outline: none;
+  }
 }
