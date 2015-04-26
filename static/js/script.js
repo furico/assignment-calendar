@@ -55,10 +55,6 @@ function ViewModel() {
     updateCalendar();
   };
 
-  self.assignMember = function() {
-    alert('assign!');
-  };
-
   updateCalendar();
 }
 
@@ -67,7 +63,6 @@ ko.components.register('assignee', {
     this.name = params.value;
     this.remove = function(data, event) {
       alert('remove!');
-      event.preventDefault();
     };
   },
   template:
