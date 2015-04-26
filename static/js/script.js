@@ -62,7 +62,8 @@ ko.components.register('assignee', {
   viewModel: function(params) {
     this.name = params.value;
     this.remove = function(data, event) {
-      alert('remove!');
+      var targetNode = event.currentTarget.parentNode.parentNode;
+      targetNode.parentNode.removeChild(targetNode);
     };
   },
   template:
