@@ -6,9 +6,7 @@
   "license": "MIT",
   "devDependencies": {
     "gulp": "*",
-    "gulp-sass": "*"
+    "gulp-sass": "*",
+    "del": "*"
   },
-  "dependencies": {
-    "del": "^1.1.1"
-  }
 }

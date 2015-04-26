@@ -14,7 +14,7 @@ gulp.task('sass', function() {
       .pipe(sass({
         includePaths: [config.bowerDir]
       }))
-      .pipe(gulp.dest('./static/css'));
+      .pipe(gulp.dest(config.staticCssDir));
 });
 
 gulp.task('clean', function(cb) {
