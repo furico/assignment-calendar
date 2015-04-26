@@ -2,3 +2,4 @@
 sandbox/
 node_modules/
 static/**/*.css
+bower_components/
