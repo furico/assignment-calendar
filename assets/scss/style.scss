@@ -35,14 +35,14 @@ h1 {
 }
 
 button {
-  .today {
+  &.today {
     font-weight: bold;
     padding-top: 0;
     padding-bottom: 0;
     height: 30px;
     border: 1px solid #bbb;
   }
-  .angle-left {
+  &.angle-left {
     padding-top: 0;
     padding-bottom: 0;
     height: 30px;
@@ -50,7 +50,7 @@ button {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  .angle-right {
+  &.angle-right {
     padding-top: 0;
     padding-bottom: 0;
     height: 30px;
