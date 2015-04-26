@@ -21,6 +21,6 @@ gulp.task('clean', function(cb) {
   del([config.staticCssDir + '/**/*.css'], cb);
 });
 
-gulp.task('default', ['sass'], function() {
+gulp.task('default', ['clean', 'sass'], function() {
   gulp.watch(config.sassPath + '/**/*.scss', ['sass']);
 });
