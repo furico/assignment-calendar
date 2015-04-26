@@ -13,63 +13,61 @@
       <h1 class="title">Assignment Calendar</h1>
     </div>
   </div>
-  <div class="main-nav">
+  <div id="calendar-view">
+    <div class="main-nav">
+      <div class="container">
+        <table class="nav-table">
+          <tbody>
+            <tr>
+              <td class="nav-today">
+                <button class="pure-button today" data-bind="click: resetMonth">今月</button>
+              </td>
+              <td class="nav-prev">
+                <button class="pure-button angle-left" data-bind="click: function(data, event) { moveMonth(-1) }">
+                  <i class="fa fa-angle-left fa-lg"></i>
+                </button>
+              </td>
+              <td class="nav-next">
+                <button class="pure-button angle-right" data-bind="click: function(data, event) { moveMonth(1) }">
+                  <i class="fa fa-angle-right fa-lg"></i>
+                </button>
+              </td>
+              <td>
+                <span class="current-month" data-bind="text: formattedMonth"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="container">
-      <table class="nav-table">
-        <tbody>
+      <table class="calendar-table">
+        <thead>
           <tr>
-            <td class="nav-today">
-              <button class="pure-button today" data-bind="click: resetMonth">今月</button>
-            </td>
-            <td class="nav-prev">
-              <button class="pure-button angle-left" data-bind="click: function(data, event) { moveMonth(-1) }">
-                <i class="fa fa-angle-left fa-lg"></i>
-              </button>
-            </td>
-            <td class="nav-next">
-              <button class="pure-button angle-right" data-bind="click: function(data, event) { moveMonth(1) }">
-                <i class="fa fa-angle-right fa-lg"></i>
-              </button>
-            </td>
-            <td>
-              <span class="current-month" data-bind="text: formattedMonth"></span>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+            <th>日</th>
+          </tr>
+        </thead>
+        <tbody data-bind="foreach: weeks">
+          <tr data-bind="foreach: $data">
+            <td data-toggle="modal" data-target="#modal-view" data-bind="attr: { 'data-date': $data }">
+              <p class="calendar-date" data-bind="text: $data"></p>
+              <assignee params="value: 'shimamura'"></assignee>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <div class="container">
-    <table class="calendar-table">
-      <thead>
-        <tr>
-          <th>月</th>
-          <th>火</th>
-          <th>水</th>
-          <th>木</th>
-          <th>金</th>
-          <th>土</th>
-          <th>日</th>
-        </tr>
-      </thead>
-      <tbody data-bind="foreach: weeks">
-        <tr data-bind="foreach: $data">
-          <td data-toggle="modal" data-target="#myModal">
-            <p class="calendar-date" data-bind="text: $data"></p>
-            <assignee params="value: 'shimamura'"></assignee>
-          </td>
-        </tr>
-      </tbody>
-    </table>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-      Launch demo modal
-    </button>
-  </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modal-view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -77,7 +75,7 @@
           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
         </div>
         <div class="modal-body">
-          ...
+          <span data-bind="text: personName"></span>
         </div>
         <div class="modal-footer">
           <button type="button" data-dismiss="modal">Close</button>

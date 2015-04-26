@@ -1,4 +1,4 @@
-function ViewModel() {
+function CalendarViewModel() {
   var self = this;
   var today = new Date();
   var updateCalendar = function() {
@@ -72,5 +72,10 @@ ko.components.register('assignee', {
     </div>'
 });
 
+function ModalViewModel() {
+  var self = this;
+  self.personName = 'Yuigahama';
+}
 
-ko.applyBindings(new ViewModel());
+ko.applyBindings(new CalendarViewModel(), document.getElementById('calendar-view'));
+ko.applyBindings(new ModalViewModel(), document.getElementById('modal-view'));
