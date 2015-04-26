@@ -1,4 +1,7 @@
-@import 'css-modal/modal';
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/close";
+@import "bootstrap/modals";
 
 body {
   font-family: "Helvetica Neue", Helvetica, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;

@@ -6,21 +6,31 @@ var del = require('del');
 var config = {
   sassPath: './assets/scss',
   bowerDir: './bower_components',
-  staticCssDir: './static/css',
+  staticDir: './static',
+  staticVendorDir: './static/vendor',
+  bootstrapAssetsPath: '/bootstrap-sass-official/assets'
 }
 
 gulp.task('sass', function() {
   gulp.src(config.sassPath + '/**/*.scss')
-      .pipe(sass({
-        includePaths: [config.bowerDir]
-      }))
-      .pipe(gulp.dest(config.staticCssDir));
+    .pipe(sass({
+      includePaths: [
+        config.bowerDir,
+        config.bowerDir + config.bootstrapAssetsPath + '/stylesheets'
+      ]
+    }))
+    .pipe(gulp.dest(config.staticDir + '/css'));
+});
+
+gulp.task('dest', function() {
+  gulp.src(config.bowerDir + config.bootstrapAssetsPath + '/javascripts/bootstrap/modal.js')
+    .pipe(gulp.dest(config.staticVendorDir + '/js'));
 });
 
 gulp.task('clean', function(cb) {
-  del([config.staticCssDir + '/**/*.css'], cb);
+  del([config.staticDir + '/css/**/*.css'], cb);
 });
 
-gulp.task('default', ['clean', 'sass'], function() {
+gulp.task('default', ['clean', 'dest', 'sass'], function() {
   gulp.watch(config.sassPath + '/**/*.scss', ['sass']);
 });
