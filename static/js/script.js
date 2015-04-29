@@ -1,6 +1,7 @@
 function CalendarViewModel() {
   var self = this;
   var today = new Date();
+
   var updateCalendar = function() {
     $.getJSON("/month", {
       year: self.currentYear(),
@@ -55,6 +56,9 @@ function CalendarViewModel() {
     updateCalendar();
   };
 
+  self.showModal = function() {
+  };
+
   updateCalendar();
 }
 
@@ -76,6 +80,9 @@ ko.components.register('assignee', {
 function ModalViewModel() {
   var self = this;
   self.personName = 'Yuigahama';
+  self.save = function() {
+    alert('save');
+  };
 }
 
 ko.applyBindings(new CalendarViewModel(), document.getElementById('calendar-view'));
