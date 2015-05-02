@@ -60,7 +60,7 @@
               <!-- ko foreach: $data.a -->
               <div class="calendar-assignee">
                 <span data-bind="text: $data"></span>
-                <button class="close-btn"><i class="fa fa-times-circle"></i></button>
+                <button class="close-btn" data-bind="click: $root.remove, clickBubble: false"><i class="fa fa-times-circle"></i></button>
               </div>
               <!-- /ko -->
             </td>

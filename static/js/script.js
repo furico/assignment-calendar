@@ -4,30 +4,11 @@ function CalDateViewModel(d, a) {
   self.a = a;
 }
 
-function CalendarViewModel() {
+
+function CalendarViewModel(year, month) {
   var self = this;
-  var today = new Date();
-
-  var updateCalendar = function() {
-    $.getJSON("/month", {
-      year: self.currentYear(),
-      month: self.currentMonth(),
-    }, function(data) {
-      self.weeks.removeAll();
-      data.result.forEach(function(elem, index) {
-        var week = [];
-        elem.forEach(function(elem, index) {
-          var vm = new CalDateViewModel(elem.d, elem.a);
-          week.push(vm);
-        });
-        self.weeks.push(elem);
-      });
-    });
-  }
-
-  self.currentYear = ko.observable(today.getFullYear());
-  self.currentMonth = ko.observable(today.getMonth() + 1);
-
+  self.currentYear = ko.observable(year);
+  self.currentMonth = ko.observable(month);
   self.formattedMonth = ko.pureComputed(function() {
     if (self.currentMonth() < 1) {
       self.currentYear(self.currentYear() - 1);
@@ -41,9 +22,15 @@ function CalendarViewModel() {
 
     return self.currentYear() + "年 " + self.currentMonth() + "月";
   });
-
   self.weeks = ko.observableArray();
-  
+
+
+  self.remove = function(data, event) {
+    console.log('call remove');
+    var targetNode = event.currentTarget.parentNode;
+    targetNode.parentNode.removeChild(targetNode);
+  };
+
   self.resetMonth = function() {
     var today = new Date();
     self.currentYear(today.getFullYear());
@@ -70,23 +57,32 @@ function CalendarViewModel() {
   self.showModal = function() {
   };
 
-  updateCalendar();
 }
 
-// ko.components.register('assignee', {
-//   viewModel: function(params) {
-//     this.name = params.value;
-//     this.remove = function(data, event) {
-//       var targetNode = event.currentTarget.parentNode.parentNode;
-//       targetNode.parentNode.removeChild(targetNode);
-//     };
-//   },
-//   template:
-//     '<div class="calendar-assignee">\
-//        <span data-bind="text: name"></span>\
-//        <button class="close-btn" data-bind="click: remove, clickBubble: false"><i class="fa fa-times-circle"></i></button>\
-//     </div>'
-// });
+var vm;
+
+var updateCalendar = function() {
+  $.getJSON("/month", {
+    year: vm.currentYear(),
+    month: vm.currentMonth(),
+  }, function(data) {
+    vm.weeks.removeAll();
+    data.result.forEach(function(elem, index) {
+      var week = [];
+      elem.forEach(function(elem, index) {
+        var vm = new CalDateViewModel(elem.d, elem.a);
+        week.push(vm);
+      });
+      vm.weeks.push(elem);
+    });
+  });
+}
+
+var viewInit = function() {
+  var today = new Date();
+  vm = new CalendarViewModel(today.getFullYear(), today.getMonth() + 1)
+  updateCalendar();
+}();
 
 function ModalViewModel() {
   var self = this;
@@ -96,5 +92,5 @@ function ModalViewModel() {
   };
 }
 
-ko.applyBindings(new CalendarViewModel(), document.getElementById('calendar-view'));
+ko.applyBindings(vm, document.getElementById('calendar-view'));
 ko.applyBindings(new ModalViewModel(), document.getElementById('modal-view'));
