@@ -15,9 +15,10 @@ function CalendarViewModel() {
     }, function(data) {
       self.weeks.removeAll();
       data.result.forEach(function(elem, index) {
+        var week = [];
         elem.forEach(function(elem, index) {
-          var vm = new CalDateViewModel(elem.d, []);
-          console.log(vm);
+          var vm = new CalDateViewModel(elem.d, elem.a);
+          week.push(vm);
         });
         self.weeks.push(elem);
       });
