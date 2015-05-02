@@ -1,3 +1,9 @@
+function CalDateViewModel(d, a) {
+  var self = this;
+  self.d = d;
+  self.a = a;
+}
+
 function CalendarViewModel() {
   var self = this;
   var today = new Date();
@@ -9,6 +15,10 @@ function CalendarViewModel() {
     }, function(data) {
       self.weeks.removeAll();
       data.result.forEach(function(elem, index) {
+        elem.forEach(function(elem, index) {
+          var vm = new CalDateViewModel(elem.d, []);
+          console.log(vm);
+        });
         self.weeks.push(elem);
       });
     });
@@ -62,20 +72,20 @@ function CalendarViewModel() {
   updateCalendar();
 }
 
-ko.components.register('assignee', {
-  viewModel: function(params) {
-    this.name = params.value;
-    this.remove = function(data, event) {
-      var targetNode = event.currentTarget.parentNode.parentNode;
-      targetNode.parentNode.removeChild(targetNode);
-    };
-  },
-  template:
-    '<div class="calendar-assignee">\
-       <span data-bind="text: name"></span>\
-       <button class="close-btn" data-bind="click: remove, clickBubble: false"><i class="fa fa-times-circle"></i></button>\
-    </div>'
-});
+// ko.components.register('assignee', {
+//   viewModel: function(params) {
+//     this.name = params.value;
+//     this.remove = function(data, event) {
+//       var targetNode = event.currentTarget.parentNode.parentNode;
+//       targetNode.parentNode.removeChild(targetNode);
+//     };
+//   },
+//   template:
+//     '<div class="calendar-assignee">\
+//        <span data-bind="text: name"></span>\
+//        <button class="close-btn" data-bind="click: remove, clickBubble: false"><i class="fa fa-times-circle"></i></button>\
+//     </div>'
+// });
 
 function ModalViewModel() {
   var self = this;
