@@ -23,12 +23,28 @@ gulp.task('sass', function() {
 });
 
 gulp.task('dest', function() {
+  // css
+  gulp.src(config.bowerDir + '/pure/pure-min.css')
+    .pipe(gulp.dest(config.staticVendorDir + '/css'));
+  gulp.src(config.bowerDir + '/fontawesome/css/font-awesome.min.css')
+    .pipe(gulp.dest(config.staticVendorDir + '/css'));
+  // font
+  gulp.src(config.bowerDir + '/fontawesome/fonts/*')
+    .pipe(gulp.dest(config.staticVendorDir + '/fonts'));
+  // js
+  gulp.src(config.bowerDir + '/jquery/dist/jquery.min.js')
+    .pipe(gulp.dest(config.staticVendorDir + '/js'));
+  gulp.src(config.bowerDir + '/jquery/dist/jquery.min.map')
+    .pipe(gulp.dest(config.staticVendorDir + '/js'));
+  gulp.src(config.bowerDir + '/knockout/dist/knockout.js')
+    .pipe(gulp.dest(config.staticVendorDir + '/js'));
   gulp.src(config.bowerDir + config.bootstrapAssetsPath + '/javascripts/bootstrap/modal.js')
     .pipe(gulp.dest(config.staticVendorDir + '/js'));
 });
 
 gulp.task('clean', function(cb) {
-  del([config.staticDir + '/css/**/*.css'], cb);
+  del([config.staticDir + '/css/**/*.css',
+       config.staticDir + '/vendor/js/*'], cb);
 });
 
 gulp.task('default', ['clean', 'dest', 'sass'], function() {
