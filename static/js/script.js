@@ -9,14 +9,6 @@ function CalDateViewModel(data) {
 function CalendarViewModel(modalVM) {
   var self = this;
 
-  var debug = function() {
-    console.log('--- call debug ---');
-    self.weeks().forEach(function(elem, index) {
-      console.log(elem);
-      console.log(index);
-    });
-  };
-
   var updateCalendar = function() {
     $.getJSON("/month", {
       year: self.currentYear(),
@@ -54,13 +46,10 @@ function CalendarViewModel(modalVM) {
   self.weeks = ko.observableArray();
 
   self.remove = function(data, parentData) {
-    console.log('call remove');
     parentData.memberList.remove(data);
   };
 
   self.resetMonth = function() {
-    console.log('call reset');
-    debug();
     var today = new Date();
     self.currentYear(today.getFullYear());
     self.currentMonth(today.getMonth() + 1);
@@ -84,7 +73,6 @@ function CalendarViewModel(modalVM) {
   };
 
   self.showModal = function(data, event) {
-    console.log('call showModal');
     modalVM.vm = data;
     $('#modal-view').modal('toggle')
   };
@@ -98,8 +86,6 @@ function ModalViewModel() {
   self.member = ko.observable();
   self.vm = null;
   self.save = function() {
-    console.log('save');
-    console.log(self.vm);
     self.vm.memberList.push(self.member());
     self.member('')
     $('#modal-view').modal('toggle')
