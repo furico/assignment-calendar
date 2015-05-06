@@ -42,9 +42,9 @@ gulp.task('dest', function() {
     .pipe(gulp.dest(config.staticVendorDir + '/js'));
 });
 
-gulp.task('clean', function(cb) {
+gulp.task('clean', function() {
   del([config.staticDir + '/css/**/*.css',
-       config.staticDir + '/vendor/js/*'], cb);
+       config.staticDir + '/vendor/js/*']);
 });
 
 gulp.task('default', ['clean', 'dest', 'sass'], function() {

@@ -56,11 +56,11 @@
         <tbody data-bind="foreach: weeks">
           <tr data-bind="foreach: $data">
             <td data-bind="click: $root.showModal">
-              <p class="calendar-date" data-bind="text: $data.d"></p>
-              <!-- ko foreach: $data.a -->
+              <p class="calendar-date" data-bind="text: $data.date"></p>
+              <!-- ko foreach: $data.memberList -->
               <div class="calendar-assignee">
                 <span data-bind="text: $data"></span>
-                <button class="close-btn" data-bind="click: $root.remove, clickBubble: false"><i class="fa fa-times-circle"></i></button>
+                <button class="close-btn" data-bind="click: function() { $root.remove($data, $parent) }, clickBubble: false"><i class="fa fa-times-circle"></i></button>
               </div>
               <!-- /ko -->
             </td>
@@ -81,7 +81,7 @@
         <div class="modal-body">
           <form class="pure-form pure-form-stacked">
             <label for="member" class="control-label">Member</label>
-            <input id="member" class="form-control" type="text" placeholder="Name">
+            <input id="member" class="form-control" type="text" placeholder="Name" data-bind="value: member">
           </form>
         </div>
         <div class="modal-footer">

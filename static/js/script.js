@@ -1,12 +1,21 @@
-function CalDateViewModel(d, a) {
+function CalDateViewModel(data) {
   var self = this;
-  self.d = d;
-  self.a = a;
+  self.year = data.year;
+  self.month = data.month;
+  self.date = data.date;
+  self.memberList = ko.observableArray(data.memberList);
 }
 
-
-function CalendarViewModel() {
+function CalendarViewModel(modalVM) {
   var self = this;
+
+  var debug = function() {
+    console.log('--- call debug ---');
+    self.weeks().forEach(function(elem, index) {
+      console.log(elem);
+      console.log(index);
+    });
+  };
 
   var updateCalendar = function() {
     $.getJSON("/month", {
@@ -17,10 +26,10 @@ function CalendarViewModel() {
       data.result.forEach(function(elem, index) {
         var week = [];
         elem.forEach(function(elem, index) {
-          var vm = new CalDateViewModel(elem.d, elem.a);
+          var vm = new CalDateViewModel(elem);
           week.push(vm);
         });
-        self.weeks.push(elem);
+        self.weeks.push(week);
       });
     });
   }
@@ -41,15 +50,17 @@ function CalendarViewModel() {
 
     return self.currentYear() + "年 " + self.currentMonth() + "月";
   });
+
   self.weeks = ko.observableArray();
 
-  self.remove = function(data, event) {
+  self.remove = function(data, parentData) {
     console.log('call remove');
-    var targetNode = event.currentTarget.parentNode;
-    targetNode.parentNode.removeChild(targetNode);
+    parentData.memberList.remove(data);
   };
 
   self.resetMonth = function() {
+    console.log('call reset');
+    debug();
     var today = new Date();
     self.currentYear(today.getFullYear());
     self.currentMonth(today.getMonth() + 1);
@@ -72,19 +83,27 @@ function CalendarViewModel() {
     updateCalendar();
   };
 
-  self.showModal = function() {
+  self.showModal = function(data, event) {
+    console.log('call showModal');
+    modalVM.vm = data;
+    $('#modal-view').modal('toggle')
   };
 
+  ko.applyBindings(modalVM, document.getElementById('modal-view'));
   updateCalendar();
 }
 
 function ModalViewModel() {
   var self = this;
-  self.personName = 'Yuigahama';
+  self.member = ko.observable();
+  self.vm = null;
   self.save = function() {
-    alert('save');
+    console.log('save');
+    console.log(self.vm);
+    self.vm.memberList.push(self.member());
+    self.member('')
+    $('#modal-view').modal('toggle')
   };
 }
 
-ko.applyBindings(new CalendarViewModel(), document.getElementById('calendar-view'));
-ko.applyBindings(new ModalViewModel(), document.getElementById('modal-view'));
+ko.applyBindings(new CalendarViewModel(new ModalViewModel()), document.getElementById('calendar-view'));

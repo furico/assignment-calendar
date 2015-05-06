@@ -16,7 +16,11 @@ def month():
     year = request.args.get('year', t.year, type=int)
     month = request.args.get('month', t.month, type=int)
     weeks = Calendar().monthdatescalendar(year, month)
-    result = [[{'d': d.day, 'a': ['uzuki', 'rin']} for d in week] for week in weeks]
+    result = [[{'year': d.year,
+                'month': d.month,
+                'date': d.day,
+                'memberList': []} for d in week]
+              for week in weeks]
     return jsonify(result=result)
 
 if __name__ == '__main__':
