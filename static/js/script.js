@@ -87,9 +87,16 @@
     self.member = ko.observable();
     self.vm = null;
     self.save = function() {
-      self.vm.memberList.push(self.member());
-      self.member('')
-      $('#modal-view').modal('toggle')
+      $.getJSON("/assign", {
+        year: self.vm.year,
+        month: self.vm.month,
+        date: self.vm.date,
+        member: self.member(),
+      }, function(data) {
+        self.vm.memberList.push(data.result.name);
+        self.member('');
+        $('#modal-view').modal('toggle');
+      });
     };
   }
 
