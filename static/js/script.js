@@ -1,4 +1,6 @@
 (function() {
+  "use strict"
+
   function CalDateViewModel(data) {
     var self = this;
     self.year = data.year;
@@ -47,7 +49,14 @@
     self.weeks = ko.observableArray();
 
     self.remove = function(data, parentData) {
-      parentData.memberList.remove(data);
+      $.getJSON("/remove", {
+        year: parentData.year,
+        month: parentData.month,
+        date: parentData.date,
+      }, function() {
+        console.log('remove')
+        parentData.memberList.remove(data);
+      });
     };
 
     self.resetMonth = function() {
