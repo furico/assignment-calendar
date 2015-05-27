@@ -48,12 +48,13 @@ def month():
     return jsonify(result=result)
 
 
-@app.route('/assign')
+@app.route('/assign', methods=['POST'])
 def assign():
-    year = request.args.get('year', type=int)
-    month = request.args.get('month', type=int)
-    date = request.args.get('date', type=int)
-    member = request.args.get('member')
+    print('--- assign ---')
+    year = request.form.get('year', type=int)
+    month = request.form.get('month', type=int)
+    date = request.form.get('date', type=int)
+    member = request.form.get('member')
 
     mongo.db.idols.insert(
         {
@@ -73,12 +74,12 @@ def assign():
     return jsonify(result=result)
 
 
-@app.route('/remove')
+@app.route('/remove', methods=['POST'])
 def remove():
     print('--- remove ---')
-    year = request.args.get('year', type=int)
-    month = request.args.get('month', type=int)
-    date = request.args.get('date', type=int)
+    year = request.form.get('year', type=int)
+    month = request.form.get('month', type=int)
+    date = request.form.get('date', type=int)
 
     result = mongo.db.idols.remove({
         'year': year,

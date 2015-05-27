@@ -49,14 +49,14 @@
     self.weeks = ko.observableArray();
 
     self.remove = function(data, parentData) {
-      $.getJSON("/remove", {
+      $.post("/remove", {
         year: parentData.year,
         month: parentData.month,
         date: parentData.date,
       }, function() {
         console.log('remove')
         parentData.memberList.remove(data);
-      });
+      }, "json");
     };
 
     self.resetMonth = function() {
@@ -96,16 +96,17 @@
     self.member = ko.observable();
     self.vm = null;
     self.save = function() {
-      $.getJSON("/assign", {
+      $.post("/assign", {
         year: self.vm.year,
         month: self.vm.month,
         date: self.vm.date,
         member: self.member(),
       }, function(data) {
+        console.log(data);
         self.vm.memberList.push(data.result.name);
         self.member('');
         $('#modal-view').modal('toggle');
-      });
+      }, "json");
     };
   }
 
