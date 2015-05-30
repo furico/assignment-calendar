@@ -14,9 +14,9 @@
     </div>
   </div>
   <div id="calendar-view">
-    <div class="main-nav">
-      <div class="container">
-        <table class="nav-table">
+    <div class="container">
+      <div class="main-nav">
+        <table class="nav-table-left">
           <tbody>
             <tr>
               <td class="nav-today">
@@ -34,6 +34,17 @@
               </td>
               <td>
                 <span class="current-month" data-bind="text: formattedMonth"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="nav-table-right">
+          <tbody>
+            <tr>
+              <td>
+                <button class="pure-button angle-right">
+                  <i class="fa fa-cog fa-lg"></i>
+                </button>
               </td>
             </tr>
           </tbody>

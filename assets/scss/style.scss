@@ -18,6 +18,8 @@ body {
 
 .main-nav {
   margin-bottom: 0.5em;
+  position: relative;
+  height: 30px;
 }
 
 h1.title {
@@ -60,6 +62,16 @@ button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
+}
+
+.nav-table-left {
+  position: absolute;
+  left: 0;
+}
+
+.nav-table-right {
+  position: absolute;
+  right: 0;
 }
 
 .nav-prev {
