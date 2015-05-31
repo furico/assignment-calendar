@@ -5,7 +5,7 @@ from calendar import Calendar
 
 app = Flask(__name__)
 
-app.config['MONGO_DBNAME'] = 'sample'
+app.config['MONGO_DBNAME'] = 'assignment-calendar'
 
 mongo = PyMongo(app)
 
@@ -26,7 +26,7 @@ def month():
     for i, week in enumerate(weeks):
         result.append([])
         for d in week:
-            assignment_data = mongo.db.idols.find_one({
+            assignment_data = mongo.db.assignments.find_one({
                 'year': d.year,
                 'month': d.month,
                 'date': d.day,
@@ -56,7 +56,7 @@ def assign():
     date = request.form.get('date', type=int)
     member = request.form.get('member')
 
-    mongo.db.idols.insert(
+    mongo.db.assignments.insert(
         {
             'year': year,
             'month': month,
@@ -81,7 +81,7 @@ def remove():
     month = request.form.get('month', type=int)
     date = request.form.get('date', type=int)
 
-    result = mongo.db.idols.remove({
+    result = mongo.db.assignments.remove({
         'year': year,
         'month': month,
         'date': date,
