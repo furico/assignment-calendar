@@ -1,114 +1,97 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>Assignment Calendar</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/css/pure-min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/css/font-awesome.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="title">Assignment Calendar</h1>
-    </div>
+{% extends "layout.html" %}
+{% block body %}
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="title">Assignment Calendar</h1>
   </div>
-  <div id="calendar-view">
-    <div class="container">
-      <div class="main-nav">
-        <table class="nav-table-left">
-          <tbody>
-            <tr>
-              <td class="nav-today">
-                <button class="pure-button today" data-bind="click: resetMonth">今月</button>
-              </td>
-              <td class="nav-prev">
-                <button class="pure-button angle-left" data-bind="click: function(data, event) { moveMonth(-1) }">
-                  <i class="fa fa-angle-left fa-lg"></i>
-                </button>
-              </td>
-              <td class="nav-next">
-                <button class="pure-button angle-right" data-bind="click: function(data, event) { moveMonth(1) }">
-                  <i class="fa fa-angle-right fa-lg"></i>
-                </button>
-              </td>
-              <td>
-                <span class="current-month" data-bind="text: formattedMonth"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="nav-table-right">
-          <tbody>
-            <tr>
-              <td>
-                <button class="pure-button angle-right">
-                  <i class="fa fa-cog fa-lg"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="container">
-      <table class="calendar-table">
-        <thead>
+</div>
+<div id="calendar-view">
+  <div class="container">
+    <div class="main-nav">
+      <table class="nav-table-left">
+        <tbody>
           <tr>
-            <th>月</th>
-            <th>火</th>
-            <th>水</th>
-            <th>木</th>
-            <th>金</th>
-            <th>土</th>
-            <th>日</th>
+            <td class="nav-today">
+              <button class="pure-button today" data-bind="click: resetMonth">今月</button>
+            </td>
+            <td class="nav-prev">
+              <button class="pure-button angle-left" data-bind="click: function(data, event) { moveMonth(-1) }">
+                <i class="fa fa-angle-left fa-lg"></i>
+              </button>
+            </td>
+            <td class="nav-next">
+              <button class="pure-button angle-right" data-bind="click: function(data, event) { moveMonth(1) }">
+                <i class="fa fa-angle-right fa-lg"></i>
+              </button>
+            </td>
+            <td>
+              <span class="current-month" data-bind="text: formattedMonth"></span>
+            </td>
           </tr>
-        </thead>
-        <tbody data-bind="foreach: weeks">
-          <tr data-bind="foreach: $data">
-            <td data-bind="click: $root.showModal">
-              <p class="calendar-date" data-bind="text: $data.date"></p>
-              <!-- ko foreach: $data.memberList -->
-              <div class="calendar-assignee">
-                <span data-bind="text: $data"></span>
-                <button class="close-btn" data-bind="click: function() { $root.remove($data, $parent) }, clickBubble: false"><i class="fa fa-times-circle"></i></button>
-              </div>
-              <!-- /ko -->
+        </tbody>
+      </table>
+      <table class="nav-table-right">
+        <tbody>
+          <tr>
+            <td>
+              <button class="pure-button angle-right">
+                <i class="fa fa-cog fa-lg"></i>
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <div class="container">
+    <table class="calendar-table">
+      <thead>
+        <tr>
+          <th>月</th>
+          <th>火</th>
+          <th>水</th>
+          <th>木</th>
+          <th>金</th>
+          <th>土</th>
+          <th>日</th>
+        </tr>
+      </thead>
+      <tbody data-bind="foreach: weeks">
+        <tr data-bind="foreach: $data">
+          <td data-bind="click: $root.showModal">
+            <p class="calendar-date" data-bind="text: $data.date"></p>
+            <!-- ko foreach: $data.memberList -->
+            <div class="calendar-assignee">
+              <span data-bind="text: $data"></span>
+              <button class="close-btn" data-bind="click: function() { $root.remove($data, $parent) }, clickBubble: false"><i class="fa fa-times-circle"></i></button>
+            </div>
+            <!-- /ko -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="modal-view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h3 class="modal-title" id="myModalLabel">Modal title</h4>
-        </div>
-        <div class="modal-body">
-          <form class="pure-form pure-form-stacked">
-            <label for="member" class="control-label">Member</label>
-            <input id="member" class="form-control" type="text" placeholder="Name" data-bind="value: member">
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="pure-button" type="button" data-dismiss="modal">Close</button>
-          <button class="pure-button pure-button-primary" type="button" data-bind="click: save">Save</button>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="modal-view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <form class="pure-form pure-form-stacked">
+          <label for="member" class="control-label">Member</label>
+          <input id="member" class="form-control" type="text" placeholder="Name" data-bind="value: member">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="pure-button" type="button" data-dismiss="modal">Close</button>
+        <button class="pure-button pure-button-primary" type="button" data-bind="click: save">Save</button>
       </div>
     </div>
   </div>
-
-  <script type=text/javascript>
-    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-  </script>
-  <script src="{{ url_for('static', filename='vendor/js/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='vendor/js/knockout.js') }}"></script>
-  <script src="{{ url_for('static', filename='vendor/js/modal.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
-</html>
+</div>
+{% endblock %}
